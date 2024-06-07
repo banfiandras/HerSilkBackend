@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,17 @@ use App\Http\Controllers\ImageController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/uploadSal', [ImageUploadController::class, 'uploadSal']);
-Route::post('/uploadKendo', [ImageUploadController::class, 'uploadKendo']);
+
+// --------------------------------- get ----------------------------------------
+
 Route::get('/images', [ImageController::class, 'index']);
 Route::get('/images/sal', [ImageController::class, 'getSalImages']);
 Route::get('/images/kendo', [ImageController::class, 'getKendoImages']);
+
+// --------------------------------- post ----------------------------------------
+
+Route::post('/uploadSal', [ImageUploadController::class, 'uploadSal']);
+Route::post('/uploadKendo', [ImageUploadController::class, 'uploadKendo']);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
