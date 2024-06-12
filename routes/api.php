@@ -27,11 +27,13 @@ Route::get('/images', [ImageController::class, 'index']);
 Route::get('/allImages', [ImageController::class, 'getAllImages']);
 Route::get('/images/sal', [ImageController::class, 'getSalImages']);
 Route::get('/images/kendo', [ImageController::class, 'getKendoImages']);
+Route::get('/carouselImages', [ImageController::class, 'getCarouselImages']);
 
 // --------------------------------- post ----------------------------------------
 
-Route::post('/uploadSal', [ImageUploadController::class, 'uploadSal']);
-Route::post('/uploadKendo', [ImageUploadController::class, 'uploadKendo']);
+Route::post('/uploadsal', [ImageUploadController::class, 'uploadSal']);
+Route::post('/uploadkendo', [ImageUploadController::class, 'uploadKendo']);
+Route::post('/uploadcarousel', [ImageUploadController::class, 'uploadCarousel']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
