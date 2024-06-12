@@ -21,29 +21,29 @@ class ImageController extends Controller
     }
 
     public function getSalImages()
+{
+    $images = Images::where('location', 'like', '%sal%')->get();
+    return response()->json($images);
+}
+
+
+public function getKendoImages()
+{
+    $images = Images::where('location', 'like', '%kendo%')->get();
+    return response()->json($images);
+}
+
+
+    public function getSalImage()
     {
         $image = Images::where('location', 'like', '%sal%')->inRandomOrder()->first();
-        if ($image) {
-            return response()->json([
-                'location' => $image->location,
-                'filename' => $image->filename,
-            ]);
-        } else {
-            return response()->json(['error' => 'Sal image not found'], 404);
-        }
+        return response()->json($image->location);
     }
 
-    public function getKendoImages()
+    public function getKendoImage()
     {
         $image = Images::where('location', 'like', '%kendo%')->inRandomOrder()->first();
-        if ($image) {
-            return response()->json([
-                'location' => $image->location,
-                'filename' => $image->filename,
-            ]);
-        } else {
-            return response()->json(['error' => 'Kendo image not found'], 404);
-        }
+        return response()->json($image->location);
     }
 
     public function getCarouselImages()

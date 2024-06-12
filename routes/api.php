@@ -25,9 +25,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/images', [ImageController::class, 'index']);
 Route::get('/allImages', [ImageController::class, 'getAllImages']);
-Route::get('/images/sal', [ImageController::class, 'getSalImages']);
-Route::get('/images/kendo', [ImageController::class, 'getKendoImages']);
+Route::get('/images/salak', [ImageController::class, 'getSalImages']);
+Route::get('/images/kendok', [ImageController::class, 'getKendoImages']);
+Route::get('/images/sal', [ImageController::class, 'getSalImage']);
+Route::get('/images/kendo', [ImageController::class, 'getKendoImage']);
 Route::get('/carouselImages', [ImageController::class, 'getCarouselImages']);
+
 
 // --------------------------------- post ----------------------------------------
 
