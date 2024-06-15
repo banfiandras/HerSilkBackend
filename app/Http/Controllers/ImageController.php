@@ -8,19 +8,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    public function index()
-    {
-        $images = Images::all()->pluck('location');
-        return response()->json($images);
-    }
 
     public function getAllImages()
     {
-        $images = Images::all()->pluck('location');
+        $images = Images::all();
         return response()->json($images);
     }
 
-    public function getSalImages()
+public function getSalImages()
 {
     $images = Images::where('location', 'like', '%sal%')->get();
     return response()->json($images);
