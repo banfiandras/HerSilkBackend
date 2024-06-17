@@ -31,7 +31,6 @@ Route::get('/images/sal', [ImageController::class, 'getSalImage']);
 Route::get('/images/kendo', [ImageController::class, 'getKendoImage']);
 Route::get('/carouselImages', [ImageController::class, 'getCarouselImages']);
 
-
 // --------------------------------- post ----------------------------------------
 
 Route::post('/uploadsal', [ImageUploadController::class, 'uploadSal']);

@@ -9,93 +9,60 @@ use Illuminate\Support\Facades\Log;
 
 class ImageUploadController extends Controller
 {
-    public function uploadCarousel(Request $request)
+    public function uploadImages(Request $request, $directory)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500000',
-            'name' => 'required|string|max:255', 
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500000',
+            'name' => 'required|string|max:255',
         ]);
 
         try {
-            $image = $request->file('image');
+            $imageFiles = $request->file('images');
             $imageName = $request->input('name');
-            $extension = $image->getClientOriginalExtension();
-            $fileNameWithExtension = $imageName . '.' . $extension;
-            $path = $image->storeAs('carousel', $fileNameWithExtension, 'public');
 
-            $imageRecord = Images::create([
-                'filename' => $fileNameWithExtension,
-                'location' => Storage::url($path),
-            ]);
+            $existingImagesCount = Images::where('filename', 'LIKE', "{$imageName}_%")->count();
+            if ($existingImagesCount + count($imageFiles) > 4) {
+                return response()->json(['error' => 'You can only upload up to 4 images with the same name.'], 400);
+            }   
 
-            return response()->json(['path' => $imageRecord->location], 200);
+            $storedImages = [];
+            foreach ($imageFiles as $index => $image) {
+                $extension = $image->getClientOriginalExtension();
+                $fileNameWithExtension = $imageName . '_' . ($existingImagesCount + $index) . '.' . $extension;
+
+                $path = $image->storeAs("{$directory}", $fileNameWithExtension, 'public');
+
+                $imageRecord = Images::create([
+                    'filename' => $fileNameWithExtension,
+                    'location' => Storage::url($path),
+                ]);
+
+                $storedImages[] = $imageRecord->location;
+            }
+
+            return response()->json(['paths' => $storedImages], 200);
         } catch (\Exception $e) {
-            Log::error('Error uploading image in uploadCarousel method: ', [
+            Log::error('Error uploading images in uploadImages method: ', [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'request' => $request->all()
             ]);
-            return response()->json(['error' => 'Error uploading image in uploadCarousel method'], 500);
+            return response()->json(['error' => 'Error uploading images in uploadImages method'], 500);
         }
+    }
+
+    public function uploadCarousel(Request $request)
+    {
+        return $this->uploadImages($request, 'carousel');
     }
 
     public function uploadSal(Request $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500000',
-            'name' => 'required|string|max:255', 
-        ]);
-
-        try {
-            $image = $request->file('image');
-            $imageName = $request->input('name');
-            $extension = $image->getClientOriginalExtension();
-            $fileNameWithExtension = $imageName . '.' . $extension;
-            $path = $image->storeAs('sal', $fileNameWithExtension, 'public');
-
-            $imageRecord = Images::create([
-                'filename' => $fileNameWithExtension,
-                'location' => Storage::url($path),
-            ]);
-
-            return response()->json(['path' => $imageRecord->location], 200);
-        } catch (\Exception $e) {
-            Log::error('Error uploading image in uploadSal method: ', [
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-                'request' => $request->all()
-            ]);
-            return response()->json(['error' => 'Error uploading image in uploadSal method'], 500);
-        }
+        return $this->uploadImages($request, 'sal');
     }
 
     public function uploadKendo(Request $request)
     {
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500000',
-            'name' => 'required|string|max:255', 
-        ]);
-
-        try {
-            $image = $request->file('image');
-            $imageName = $request->input('name');
-            $extension = $image->getClientOriginalExtension();
-            $fileNameWithExtension = $imageName . '.' . $extension;
-            $path = $image->storeAs('kendo', $fileNameWithExtension, 'public');
-
-            $imageRecord = Images::create([
-                'filename' => $fileNameWithExtension,
-                'location' => Storage::url($path),
-            ]);
-
-            return response()->json(['path' => $imageRecord->location], 200);
-        } catch (\Exception $e) {
-            Log::error('Error uploading image in uploadKendo method: ', [
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-                'request' => $request->all()
-            ]);
-            return response()->json(['error' => 'Error uploading image in uploadKendo method'], 500);
-        }
+        return $this->uploadImages($request, 'kendo');
     }
 }
