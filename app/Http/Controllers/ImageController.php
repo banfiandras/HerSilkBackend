@@ -23,14 +23,11 @@ class ImageController extends Controller
 
     public function getKendoImages()
     {
-        $image = Images::where('location', 'like', '%/kendo/%')->inRandomOrder()->first();
-
-        if ($image) {
-            return response()->json($image->location);
-        } else {
-            return response()->json(['message' => 'No images found in the kendo folder'], 404);
-        }
-    }
+        $images = Images::where('location', 'like', '%/kendo/%')
+           ->get();
+   
+         return response()->json($images);
+       }
 
     public function getSalImage()
     {
@@ -52,5 +49,26 @@ class ImageController extends Controller
 
         return response()->json($imageLocations);
     }
+
+    public function deleteImage($imageName)
+    {
+    $image = Images::where('location', 'like', '%' . $imageName . '%')->first();
+
+    if ($image) {
+        $filePath = public_path($image->location);
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $image->delete();
+
+        return response()->json(['message' => 'Image deleted successfully']);
+    } else {
+        return response()->json(['message' => 'Image not found'], 404);
+    }
+    
+
+}
 
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Jún 16. 01:55
+-- Létrehozás ideje: 2024. Jún 18. 09:18
 -- Kiszolgáló verziója: 10.4.28-MariaDB
 -- PHP verzió: 8.2.4
 
@@ -40,42 +40,22 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `filename`, `location`) VALUES
-(9, 'asd.jpg', '/storage/sal/asd.jpg'),
-(10, 'aaaa.jpeg', '/storage/kendo/aaaa.jpeg'),
-(11, 'asd.jpeg', '/storage/carousel/asd.jpeg'),
-(12, 'aaaa.jpeg', '/storage/carousel/aaaa.jpeg'),
-(13, 'ggsd.jpg', '/storage/sal/ggsd.jpg'),
-(14, 'sgzk.jpg', '/storage/sal/sgzk.jpg'),
-(15, 'ztikzt.JPG', '/storage/sal/ztikzt.JPG'),
-(16, 'hztekt.JPG', '/storage/kendo/hztekt.JPG'),
-(17, 'h6wjt7k.jpg', '/storage/kendo/h6wjt7k.jpg'),
-(18, 'trzier.jpg', '/storage/sal/trzier.jpg'),
-(19, 'hz4wwsh.jpg', '/storage/sal/hz4wwsh.jpg'),
-(20, 'rjtrzjzzetj.JPG', '/storage/sal/rjtrzjzzetj.JPG'),
-(21, 'hjrwztjtr.jpg', '/storage/sal/hjrwztjtr.jpg'),
-(22, 'hjztejktj.jpg', '/storage/sal/hjztejktj.jpg'),
-(23, 'dfhd.JPG', '/storage/kendo/dfhd.JPG'),
-(24, 'tsrth.jpg', '/storage/kendo/tsrth.jpg'),
-(25, 'wgehwrz.JPG', '/storage/kendo/wgehwrz.JPG'),
-(26, 'hgardhd.JPG', '/storage/kendo/hgardhd.JPG'),
-(27, 'grgew.JPG', '/storage/kendo/grgew.JPG'),
-(28, 'rhgeg.jpg', '/storage/kendo/rhgeg.jpg'),
-(29, 'sgwgweg.jpg', '/storage/kendo/sgwgweg.jpg'),
-(30, 'wgwgw.jpeg', '/storage/sal/wgwgw.jpeg'),
-(31, 'rgegegew.JPG', '/storage/kendo/rgegegew.JPG'),
-(32, 'sgwgwgf.jpg', '/storage/kendo/sgwgwgf.jpg'),
-(33, 'sdfsfsdf.jpg', '/storage/sal/sdfsfsdf.jpg'),
-(34, 'fsfdsfs.jpg', '/storage/kendo/fsfdsfs.jpg'),
-(35, 'sfsfsf.jpg', '/storage/sal/sfsfsf.jpg'),
-(36, 'fssfsfd.JPG', '/storage/kendo/fssfsfd.JPG'),
-(37, 'sfsdfssfdsfs.jpeg', '/storage/kendo/sfsdfssfdsfs.jpeg'),
-(38, 'fsdfsdfds.JPG', '/storage/sal/fsdfsdfds.JPG'),
-(39, 'sdfsdgshed.JPG', '/storage/sal/sdfsdgshed.JPG'),
-(40, 'sdgsdgsdg.jpg', '/storage/sal/sdgsdgsdg.jpg'),
-(41, 'herstjhrthj.jpg', '/storage/sal/herstjhrthj.jpg'),
-(42, 'jtrjtekrzul.jpg', '/storage/sal/jtrjtekrzul.jpg'),
-(43, 'h5trhrh.JPG', '/storage/sal/h5trhrh.JPG'),
-(44, 'fianlly.jpg', '/storage/kendo/fianlly.jpg');
+(82, 'a_0.JPG', '/storage/sal/a_0.JPG'),
+(83, 'a_1.JPG', '/storage/sal/a_1.JPG'),
+(84, 'a_2.JPG', '/storage/sal/a_2.JPG'),
+(85, 'asd_0.jpg', '/storage/kendo/asd_0.jpg'),
+(86, 'asd_1.JPG', '/storage/kendo/asd_1.JPG'),
+(87, 'asd_2.jpg', '/storage/kendo/asd_2.jpg'),
+(88, 'carous_0.jpeg', '/storage/carousel/carous_0.jpeg'),
+(89, 'carous_1.jpg', '/storage/carousel/carous_1.jpg'),
+(90, 'aaa_0.jpeg', '/storage/sal/aaa_0.jpeg'),
+(91, 'aaaaaaaaaaaaaaa_0.jpeg', '/storage/sal/aaaaaaaaaaaaaaa_0.jpeg'),
+(92, 'sssssssss_0.jpg', '/storage/sal/sssssssss_0.jpg'),
+(93, 'grhrfh_0.jpg', '/storage/kendo/grhrfh_0.jpg'),
+(94, 'testkendo_0.jpg', '/storage/kendo/testkendo_0.jpg'),
+(95, 'testkendo_1.jpg', '/storage/kendo/testkendo_1.jpg'),
+(96, 'testkendo_2.JPG', '/storage/kendo/testkendo_2.JPG'),
+(97, 'testkendo_3.JPG', '/storage/kendo/testkendo_3.JPG');
 
 -- --------------------------------------------------------
 
@@ -124,7 +104,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT a táblához `users`
