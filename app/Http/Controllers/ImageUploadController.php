@@ -22,7 +22,7 @@ class ImageUploadController extends Controller
 
             $existingImagesCount = Images::where('filename', 'LIKE', "{$imageName}_%")->count();
             if ($existingImagesCount + count($imageFiles) > 4) {
-                return response()->json(['error' => 'You can only upload up to 4 images with the same name.'], 400);
+                return response()->json(['error' => 'Max 4'], 400);
             }   
 
             $storedImages = [];
@@ -42,12 +42,12 @@ class ImageUploadController extends Controller
 
             return response()->json(['paths' => $storedImages], 200);
         } catch (\Exception $e) {
-            Log::error('Error uploading images in uploadImages method: ', [
+            Log::error('Error: ', [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'request' => $request->all()
             ]);
-            return response()->json(['error' => 'Error uploading images in uploadImages method'], 500);
+            return response()->json(['error' => 'no'], 500);
         }
     }
 
